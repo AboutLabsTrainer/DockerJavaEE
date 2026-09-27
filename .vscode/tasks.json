@@ -5,13 +5,60 @@
             "label": "Package WAR",
             "type": "shell",
             "command": "mvn -B package",
-            "group": "build"
+            "group": "build",
+            "problemMatcher": []
         },
         {
             "label": "Compose up",
             "type": "shell",
             "command": "docker compose up --build",
-            "group": "none"
+            "isBackground": true,
+            "problemMatcher": {
+                "owner": "payara",
+                "pattern": {
+                    "regexp": "^payara-problem-never$"
+                },
+                "background": {
+                    "activeOnStart": true,
+                    "beginsPattern": ".",
+                    "endsPattern": "was successfully deployed"
+                }
+            }
+        },
+        {
+            "label": "Compose up dev",
+            "type": "shell",
+            "command": "docker compose -f docker-compose.yml -f compose.dev.yaml up --build",
+            "isBackground": true,
+            "problemMatcher": {
+                "owner": "payara",
+                "pattern": {
+                    "regexp": "^payara-problem-never$"
+                },
+                "background": {
+                    "activeOnStart": true,
+                    "beginsPattern": ".",
+                    "endsPattern": "was successfully deployed"
+                }
+            }
+        },
+        {
+            "label": "Compose down",
+            "type": "shell",
+            "command": "docker compose down",
+            "problemMatcher": []
+        },
+        {
+            "label": "Wait for Payara debug port",
+            "type": "shell",
+            "command": "$deadline = (Get-Date).AddMinutes(3); while ((Get-Date) -lt $deadline) { try { $client = New-Object System.Net.Sockets.TcpClient; $client.Connect('127.0.0.1', 9009); $client.Close(); exit 0 } catch { Start-Sleep -Seconds 2 } }; Write-Error 'Timed out waiting for localhost:9009'; exit 1",
+            "problemMatcher": [],
+            "options": {
+                "shell": {
+                    "executable": "powershell.exe",
+                    "args": ["-NoProfile", "-Command"]
+                }
+            }
         }
     ]
 }

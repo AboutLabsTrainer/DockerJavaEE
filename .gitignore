@@ -2,3 +2,4 @@ target/
 deployments/*.war
 .idea/
 *.iml
+nbproject/private/

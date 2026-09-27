@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+    <action>
+        <actionName>CUSTOM-compose-up</actionName>
+        <displayName>Compose Up</displayName>
+        <goals>
+            <goal>exec:exec</goal>
+        </goals>
+        <properties>
+            <exec.executable>docker</exec.executable>
+            <exec.args>compose up --build</exec.args>
+            <exec.workingdir>${project.basedir}</exec.workingdir>
+        </properties>
+    </action>
+    <action>
+        <actionName>CUSTOM-compose-up-dev</actionName>
+        <displayName>Compose Up Dev</displayName>
+        <goals>
+            <goal>exec:exec</goal>
+        </goals>
+        <properties>
+            <exec.executable>docker</exec.executable>
+            <exec.args>compose -f docker-compose.yml -f compose.dev.yaml up --build</exec.args>
+            <exec.workingdir>${project.basedir}</exec.workingdir>
+        </properties>
+    </action>
+    <action>
+        <actionName>CUSTOM-package-war</actionName>
+        <displayName>Package WAR</displayName>
+        <goals>
+            <goal>package</goal>
+        </goals>
+    </action>
+    <action>
+        <actionName>CUSTOM-compose-down</actionName>
+        <displayName>Compose Down</displayName>
+        <goals>
+            <goal>exec:exec</goal>
+        </goals>
+        <properties>
+            <exec.executable>docker</exec.executable>
+            <exec.args>compose down</exec.args>
+            <exec.workingdir>${project.basedir}</exec.workingdir>
+        </properties>
+    </action>
+</actions>

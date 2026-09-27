@@ -6,7 +6,9 @@
             "name": "Attach to Payara",
             "request": "attach",
             "hostName": "localhost",
-            "port": 9009
+            "port": 9009,
+            "projectName": "library",
+            "preLaunchTask": "Wait for Payara debug port"
         }
     ]
 }

@@ -51,8 +51,10 @@ Package again after a code change. Payara redeploys when the WAR in the deployme
 ## NetBeans
 
 1. File -> Open Project and select this directory. NetBeans treats it as a Maven web project. There is no `nbproject` folder.
-2. Start the stack with `docker compose up --build`.
+2. Right-click the project and choose **Compose Up**. That runs `docker compose up --build`.
 3. Debug -> Attach Debugger. Host `localhost`, port `9009`. Transport is socket / JPDA.
+
+To redeploy without rebuilding the image, right-click **Package WAR** first so `deployments/demo.war` exists, then right-click **Compose Up Dev**. After that stack is running, **Package WAR** again writes a new WAR and Payara redeploys it. Right-click **Compose Down** to stop the stack.
 
 Optional remote server registration (deploy and admin from the IDE):
 
@@ -65,11 +67,13 @@ Hot deploy of an exploded application needs that local Payara install and a Dock
 
 ## Visual Studio Code
 
-Open this folder. Accept the recommended extensions (Extension Pack for Java and Docker).
+Open this folder. Accept the recommended extensions (Extension Pack for Java and Docker). The same `.vscode` files work in Cursor.
 
-- Terminal -> Run Task -> **Compose up** starts the stack.
+- Terminal -> Run Task -> **Compose up** starts the stack and keeps running. The task signals ready when the log says the application was successfully deployed.
 - Terminal -> Run Task -> **Package WAR** runs `mvn package`.
-- Run and Debug -> **Attach to Payara** connects to `localhost:9009` after the container is up.
+- Terminal -> Run Task -> **Compose up dev** bind-mounts `deployments/demo.war`. Run **Package WAR** before the first **Compose up dev**. Run **Package WAR** again after a code change to redeploy.
+- Terminal -> Run Task -> **Compose down** stops the stack.
+- Run and Debug -> **Attach to Payara** waits until `localhost:9009` is open, then connects. Start **Compose up** (or **Compose up dev**) before attaching.
 
 ## Layout
 
