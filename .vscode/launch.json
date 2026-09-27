@@ -1,0 +1,12 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Attach to Payara",
+            "request": "attach",
+            "hostName": "localhost",
+            "port": 9009
+        }
+    ]
+}

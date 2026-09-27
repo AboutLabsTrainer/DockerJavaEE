@@ -1,0 +1,7 @@
+# Redeploy the host-built WAR without rebuilding the image:
+#   mvn -B package
+#   docker compose -f docker-compose.yml -f compose.dev.yaml up --build
+services:
+  payara:
+    volumes:
+      - ./deployments/demo.war:/opt/payara/deployments/demo.war
