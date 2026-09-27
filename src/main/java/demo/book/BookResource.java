@@ -12,6 +12,12 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
+/**
+ * HTTP API for books. {@code @Path("/books")} is appended to
+ * {@link LibraryApplication}'s {@code /api}, and the context root
+ * {@code /library} sits in front, so clients call {@code /library/api/books}.
+ * CDI injects the same {@link BookService} the Faces page uses.
+ */
 @Path("/books")
 @ApplicationScoped
 @Produces(MediaType.APPLICATION_JSON)
@@ -26,6 +32,7 @@ public class BookResource {
         return books.findAll();
     }
 
+    /** 201 with the saved book, or 400 when the title or author is missing. */
     @POST
     public Response create(Book book) {
         if (book == null || book.getTitle() == null || book.getAuthor() == null) {

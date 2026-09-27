@@ -1,2 +1,3 @@
+# JDBC resource jdbc/demo is the name persistence.xml looks up.
 create-jdbc-connection-pool --datasourceclassname com.mysql.cj.jdbc.MysqlDataSource --restype javax.sql.DataSource --property user=demo:password=demo:serverName=mysql:portNumber=3306:databaseName=demo:useSSL=false:allowPublicKeyRetrieval=true DemoPool
 create-jdbc-resource --connectionpoolid DemoPool jdbc/demo

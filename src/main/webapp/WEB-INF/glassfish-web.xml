@@ -3,5 +3,6 @@
         "-//GlassFish.org//DTD GlassFish Application Server 3.1 Servlet 3.0//EN"
         "http://glassfish.org/dtds/glassfish-web-app_3_0-1.dtd">
 <glassfish-web-app>
+    <!-- URLs start with /library, for example http://localhost:8080/library/ -->
     <context-root>/library</context-root>
 </glassfish-web-app>

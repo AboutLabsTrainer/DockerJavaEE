@@ -1,3 +1,4 @@
+# Stage 1 compiles the WAR. Stage 2 is the Payara runtime, which does not include Maven.
 FROM maven:3.9-eclipse-temurin-21 AS build
 WORKDIR /src
 COPY pom.xml .
@@ -7,6 +8,7 @@ RUN mvn -B -DskipTests package
 FROM payara/server-full:7.2026.8
 
 USER root
+# The driver must sit in the domain lib folder so the server class loader can open jdbc/demo.
 ADD https://repo1.maven.org/maven2/com/mysql/mysql-connector-j/9.4.0/mysql-connector-j-9.4.0.jar \
     /opt/payara/appserver/glassfish/domains/domain1/lib/mysql-connector-j.jar
 COPY payara/post-boot-commands.asadmin /opt/payara/config/post-boot-commands.asadmin

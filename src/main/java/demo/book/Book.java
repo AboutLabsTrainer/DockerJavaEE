@@ -8,10 +8,17 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import java.io.Serializable;
 
+/**
+ * A row in the {@code books} table. Jakarta Persistence maps this class to
+ * the database. The provider calls the no-arg constructor when it loads a
+ * row, then sets the fields. {@code Serializable} lets a detached instance
+ * travel with a session or a remote call.
+ */
 @Entity
 @Table(name = "books")
 public class Book implements Serializable {
 
+    /** MySQL assigns this primary key when the row is inserted. */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

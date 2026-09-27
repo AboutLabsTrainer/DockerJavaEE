@@ -6,6 +6,12 @@ import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
 import java.util.List;
 
+/**
+ * Application-wide book operations. {@code @ApplicationScoped} means one
+ * instance for the whole application. The {@code EntityManager} is
+ * container-managed: Payara injects it, joins it to the current JTA
+ * transaction, and closes it. Application code must not call {@code close()}.
+ */
 @ApplicationScoped
 public class BookService {
 
@@ -21,6 +27,10 @@ public class BookService {
         return em.find(Book.class, id);
     }
 
+    /**
+     * {@code persist} needs a transaction. {@code @Transactional} starts a
+     * JTA transaction for this method and commits it on a normal return.
+     */
     @Transactional
     public Book add(String title, String author) {
         Book book = new Book(title, author);

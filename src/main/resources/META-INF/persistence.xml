@@ -3,6 +3,11 @@
              xmlns="https://jakarta.ee/xml/ns/persistence"
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
              xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_2.xsd">
+    <!--
+      JTA means Payara begins and commits the transaction. jdbc/demo is the
+      JDBC resource created by payara/post-boot-commands.asadmin. Schema
+      action create builds a missing table and leaves existing rows in place.
+    -->
     <persistence-unit name="libraryPU" transaction-type="JTA">
         <jta-data-source>jdbc/demo</jta-data-source>
         <class>demo.book.Book</class>

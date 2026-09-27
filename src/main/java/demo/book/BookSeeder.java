@@ -5,6 +5,11 @@ import jakarta.enterprise.event.Observes;
 import jakarta.enterprise.event.Startup;
 import jakarta.inject.Inject;
 
+/**
+ * Inserts the sample catalog once. CDI fires {@link Startup} after the
+ * application is ready and this bean can be injected. The empty-table
+ * check keeps a redeploy from inserting the same three books again.
+ */
 @ApplicationScoped
 public class BookSeeder {
 

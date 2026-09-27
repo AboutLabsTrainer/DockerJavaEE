@@ -4,4 +4,5 @@
        xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/beans_4_1.xsd"
        version="4.1"
        bean-discovery-mode="annotated">
+    <!-- annotated: only classes with a bean-defining annotation, such as @ApplicationScoped, become CDI beans. -->
 </beans>
