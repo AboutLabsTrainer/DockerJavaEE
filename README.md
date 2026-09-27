@@ -78,6 +78,7 @@ Open this folder. Accept the recommended extensions (Extension Pack for Java and
 ## Layout
 
 - [WALKTHROUGH.md](WALKTHROUGH.md) — how one request moves through Faces, REST, CDI, JPA, and MySQL
+- [WORKFLOW.md](WORKFLOW.md) — how the team uses the image, the MySQL volume, and the dev WAR mount
 - `docker-compose.yml` — MySQL and Payara
 - `compose.dev.yaml` — bind-mounts `deployments/demo.war`
 - `payara/Dockerfile` — multi-stage Maven build, MySQL Connector/J, and the WAR

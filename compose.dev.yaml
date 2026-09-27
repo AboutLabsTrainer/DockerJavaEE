@@ -1,7 +1,9 @@
 # Redeploy the host-built WAR without rebuilding the image:
 #   mvn -B package
 #   docker compose -f docker-compose.yml -f compose.dev.yaml up --build
+# Payara autodeploy watches this one file. Source stays on the host; Maven writes the WAR.
 services:
   payara:
     volumes:
+      # Host deployments/demo.war replaces the copy baked into the image.
       - ./deployments/demo.war:/opt/payara/deployments/demo.war
